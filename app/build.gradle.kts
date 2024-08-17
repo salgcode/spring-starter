@@ -33,6 +33,9 @@ sonarqube {
 }
 
 
+val jupiterVersion = "5.11.0"
+val junitPlatformVersion = "1.11.0"
+
 dependencies {
     listOf(
         "spring-boot-starter-webflux",
@@ -54,6 +57,19 @@ dependencies {
     implementation("io.r2dbc:r2dbc-postgresql:0.8.13.RELEASE")
     implementation("org.springframework.data:spring-data-r2dbc:3.3.2")
     implementation(project(":pokemon-common"))
+
+    testImplementation("com.intuit.karate:karate-junit5:1.3.1")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$jupiterVersion")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:$jupiterVersion")
+
+    testImplementation("org.junit.platform:junit-platform-commons:$junitPlatformVersion")
+    testImplementation("org.junit.platform:junit-platform-runner:$junitPlatformVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:$junitPlatformVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-engine:$junitPlatformVersion")
+
 }
 
 task("runApp", JavaExec::class) {
